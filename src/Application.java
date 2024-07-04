@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Application {
@@ -8,7 +7,8 @@ public class Application {
             String operation = args[0];
             double num1 = 0, num2 = 0;
             if (!operation.equals("factorial") && !operation.equals("sqrt") && !operation.equals("log") 
-                && !operation.equals("log10") && !operation.equals("sin") && !operation.equals("cos") && !operation.equals("tan")) {
+                && !operation.equals("log10") && !operation.equals("sin") && !operation.equals("cos") && !operation.equals("tan")
+                && !operation.equals("perm")) {
                 if (args.length < 3) {
                     System.out.println("Error: Insufficient arguments for the operation.");
                     return;
@@ -78,6 +78,14 @@ public class Application {
                 case "tan":
                     result = Math.tan(num1);
                     break;
+                case "perm":
+                    if (num1 >= 0 && num2 >= 0 && num1 >= num2 && num1 <= 100) {
+                        result = permutation((int) num1, (int) num2);
+                    } else {
+                        System.out.println("Error: Invalid input for permutation.");
+                        validOperation = false;
+                    }
+                    break;
                 default:
                     System.out.println("Error: Invalid operation.");
                     validOperation = false;
@@ -89,12 +97,13 @@ public class Application {
         } else {
             // No CLI arguments, ask for user input
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter operation (add, subtract, multiply, divide, factorial, pow, sqrt, log, log10, sin, cos, tan):");
+            System.out.println("Enter operation (add, subtract, multiply, divide, factorial, pow, sqrt, log, log10, sin, cos, tan, perm):");
             String operation = scanner.next();
 
             double num1 = 0, num2 = 0;
             if (!operation.equals("factorial") && !operation.equals("sqrt") && !operation.equals("log") 
-                && !operation.equals("log10") && !operation.equals("sin") && !operation.equals("cos") && !operation.equals("tan")) {
+                && !operation.equals("log10") && !operation.equals("sin") && !operation.equals("cos") && !operation.equals("tan")
+                && !operation.equals("perm")) {
                 System.out.print("Enter first number: ");
                 num1 = scanner.nextDouble();
 
@@ -103,6 +112,10 @@ public class Application {
             } else {
                 System.out.print("Enter a number: ");
                 num1 = scanner.nextDouble();
+                if (operation.equals("perm")) {
+                    System.out.print("Enter the number of items to select: ");
+                    num2 = scanner.nextDouble();
+                }
             }
 
             double result = 0;
@@ -160,6 +173,14 @@ public class Application {
                 case "tan":
                     result = Math.tan(num1);
                     break;
+                case "perm":
+                    if (num1 >= 0 && num2 >= 0 && num1 >= num2 && num1 <= 100) {
+                        result = permutation((int) num1, (int) num2);
+                    } else {
+                        System.out.println("Error: Invalid input for permutation.");
+                        validOperation = false;
+                    }
+                    break;
                 default:
                     System.out.println("Error: Invalid operation.");
                     validOperation = false;
@@ -195,5 +216,9 @@ public class Application {
         } else {
             return n * factorial(n - 1);
         }
+    }
+
+    public static long permutation(int n, int r) {
+        return factorial(n) / factorial(n - r);
     }
 }
