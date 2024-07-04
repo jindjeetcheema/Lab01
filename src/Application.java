@@ -1,4 +1,3 @@
-package com.jindjeet.calculator;
 
 import java.util.Scanner;
 
@@ -8,7 +7,8 @@ public class Application {
             // Process CLI arguments
             String operation = args[0];
             double num1 = 0, num2 = 0;
-            if (!operation.equals("factorial")) {
+            if (!operation.equals("factorial") && !operation.equals("sqrt") && !operation.equals("log") 
+                && !operation.equals("log10") && !operation.equals("sin") && !operation.equals("cos") && !operation.equals("tan")) {
                 if (args.length < 3) {
                     System.out.println("Error: Insufficient arguments for the operation.");
                     return;
@@ -52,6 +52,32 @@ public class Application {
                         validOperation = false;
                     }
                     break;
+                case "pow":
+                    result = Math.pow(num1, num2);
+                    break;
+                case "sqrt":
+                    if (num1 >= 0) {
+                        result = Math.sqrt(num1);
+                    } else {
+                        System.out.println("Error: Square root of a negative number is not defined.");
+                        validOperation = false;
+                    }
+                    break;
+                case "log":
+                    result = Math.log(num1);
+                    break;
+                case "log10":
+                    result = Math.log10(num1);
+                    break;
+                case "sin":
+                    result = Math.sin(num1);
+                    break;
+                case "cos":
+                    result = Math.cos(num1);
+                    break;
+                case "tan":
+                    result = Math.tan(num1);
+                    break;
                 default:
                     System.out.println("Error: Invalid operation.");
                     validOperation = false;
@@ -63,11 +89,12 @@ public class Application {
         } else {
             // No CLI arguments, ask for user input
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter operation (add, subtract, multiply, divide, factorial):");
+            System.out.println("Enter operation (add, subtract, multiply, divide, factorial, pow, sqrt, log, log10, sin, cos, tan):");
             String operation = scanner.next();
 
             double num1 = 0, num2 = 0;
-            if (!operation.equals("factorial")) {
+            if (!operation.equals("factorial") && !operation.equals("sqrt") && !operation.equals("log") 
+                && !operation.equals("log10") && !operation.equals("sin") && !operation.equals("cos") && !operation.equals("tan")) {
                 System.out.print("Enter first number: ");
                 num1 = scanner.nextDouble();
 
@@ -106,6 +133,32 @@ public class Application {
                         System.out.println("Error: Factorial of a negative number is not defined.");
                         validOperation = false;
                     }
+                    break;
+                case "pow":
+                    result = Math.pow(num1, num2);
+                    break;
+                case "sqrt":
+                    if (num1 >= 0) {
+                        result = Math.sqrt(num1);
+                    } else {
+                        System.out.println("Error: Square root of a negative number is not defined.");
+                        validOperation = false;
+                    }
+                    break;
+                case "log":
+                    result = Math.log(num1);
+                    break;
+                case "log10":
+                    result = Math.log10(num1);
+                    break;
+                case "sin":
+                    result = Math.sin(num1);
+                    break;
+                case "cos":
+                    result = Math.cos(num1);
+                    break;
+                case "tan":
+                    result = Math.tan(num1);
                     break;
                 default:
                     System.out.println("Error: Invalid operation.");
